@@ -21,7 +21,18 @@ class NotesController < ApplicationController
     end
   end
 
+  def edit
+    @note = Note.find(params[:id])
+  end
+
   def update
+    @note = Note.find(params[:id])
+
+    if @note.update(edit_params)
+      redirect_to note_path(@note)
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -33,12 +44,15 @@ class NotesController < ApplicationController
     end
   end
 
-
   
   private
   
   def note_params
     params.require(:note).permit(:title, :body, :author, :complete)
+  end
+
+  def edit_params
+    params.require(:note).permit(:complete)
   end
 
 end

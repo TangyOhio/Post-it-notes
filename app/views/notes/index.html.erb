@@ -1,9 +1,11 @@
 <h1>Me me big notes</h1>
 
-<% @notes.each do |f| %>
-  <h2><%= f.title %></h2>
-  <%= link_to  "Show Notes", note_path(f), method: :get %>
-  <%= link_to  "Delete #{f.author}", note_path(f), method: :delete %>
-<% end %>
 
 <%= link_to  "Add Note", new_note_path %>
+
+<% @notes.each do |f| %>
+  <h2><%= f.title %></h2>
+  <%= link_to  "Show Note", note_path(f), method: :get %>
+  <%= link_to  "Delete", note_path(f), method: :delete %>
+  <%= link_to  "Edit", edit_note_path(f) %>
+<% end %>
